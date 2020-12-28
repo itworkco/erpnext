@@ -2,8 +2,7 @@
 // License: GNU General Public License v3. See license.txt
 
 frappe.ui.form.on("Customer", {
-	setup: function(frm) {
-
+	setup: function(frm) { 
 		frm.make_methods = {
 			'Quotation': () => frappe.model.open_mapped_doc({
 				method: 'erpnext.selling.doctype.customer.customer.make_quotation',

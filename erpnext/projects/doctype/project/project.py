@@ -157,11 +157,14 @@ class Project(Document):
 
 	def calculate_gross_margin(self):
 		expense_amount = (flt(self.total_costing_amount) + flt(self.total_expense_claim)
-			+ flt(self.total_purchase_cost) + flt(self.get('total_consumed_material_cost', 0)))
+			+ flt(self.total_purchase_cost) + flt(self.get('total_consumed_material_cost', 0))
+			+ flt(self.get('initial_cost', 0))
+			) 
 
-		self.gross_margin = flt(self.total_billed_amount) - expense_amount
-		if self.total_billed_amount:
-			self.per_gross_margin = (self.gross_margin / flt(self.total_billed_amount)) * 100
+		total_billed_amount = flt(self.total_billed_amount) + flt(self.get('initial_sale', 0)) 
+		self.gross_margin = total_billed_amount  - expense_amount 
+		if total_billed_amount > 0:
+			self.per_gross_margin = (self.gross_margin / total_billed_amount) * 100
 
 	def update_purchase_costing(self):
 		total_purchase_cost = frappe.db.sql("""select sum(base_net_amount)

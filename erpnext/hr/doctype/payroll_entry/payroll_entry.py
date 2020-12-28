@@ -311,8 +311,8 @@ class PayrollEntry(Document):
 
 		cond = self.get_filter_condition()
 		salary_slip_name_list = frappe.db.sql(""" select t1.name from `tabSalary Slip` t1
-			where t1.docstatus = 1 and start_date >= %s and end_date <= %s %s
-			""" % ('%s', '%s', cond), (self.start_date, self.end_date), as_list = True)
+			where t1.docstatus = 1 and t1.payroll_entry = %s and start_date >= %s and end_date <= %s %s
+			""" % ('%s','%s', '%s', cond), (self.name, self.start_date, self.end_date), as_list = True)
 
 		if salary_slip_name_list and len(salary_slip_name_list) > 0:
 			salary_slip_total = 0
@@ -323,7 +323,7 @@ class PayrollEntry(Document):
 						['is_flexible_benefit', 'only_tax_impact', 'create_separate_payment_entry_against_benefit_claim', 'statistical_component'])
 					if only_tax_impact != 1 and statistical_component != 1:
 						if is_flexible_benefit == 1 and creat_separate_je == 1:
-							self.create_journal_entry(sal_detail.amount, sal_detail.salary_component)
+							self.create_journal_entry2(sal_detail.amount, sal_detail.salary_component , salary_slip_name_list)
 						else:
 							salary_slip_total += sal_detail.amount
 				for sal_detail in salary_slip.deductions:
@@ -335,7 +335,41 @@ class PayrollEntry(Document):
 				salary_slip_total -= salary_slip.total_loan_repayment
 
 			if salary_slip_total > 0:
-				self.create_journal_entry(salary_slip_total, "salary")
+				self.create_journal_entry2(salary_slip_total, "salary", salary_slip_name_list)
+
+	def create_journal_entry2(self, je_payment_amount, user_remark, salary_slip_name_list):
+		default_payroll_payable_account = self.get_default_payroll_payable_account()
+		precision = frappe.get_precision("Journal Entry Account", "debit_in_account_currency")
+
+		journal_entry = frappe.new_doc('Journal Entry')
+		journal_entry.voucher_type = 'Bank Entry'
+		journal_entry.user_remark = _('Payment of {0} from {1} to {2}')\
+			.format(user_remark, self.start_date, self.end_date)
+		journal_entry.company = self.company
+		journal_entry.posting_date = self.posting_date
+
+		payment_amount = flt(je_payment_amount, precision)
+		 
+		journal_accounts = []
+		for salary_slip_name in salary_slip_name_list:
+			salary_slip = frappe.get_doc("Salary Slip", salary_slip_name[0])
+			journal_entry.user_remark += _("\n  - {0}").format(salary_slip.employee_name)
+			journal_accounts.append({
+				"account": self.payment_account,
+				"bank_account": self.bank_account,
+				"credit_in_account_currency": salary_slip.rounded_total,
+				"user_remark": _('{0}').format(salary_slip.employee_name)
+			})
+			journal_accounts.append({
+				"account": default_payroll_payable_account,
+				"debit_in_account_currency": salary_slip.rounded_total,
+				"reference_type": self.doctype,
+				"reference_name": self.name,
+				"user_remark": _('{0}').format(salary_slip.employee_name)
+			})
+ 
+		journal_entry.set("accounts", journal_accounts)
+		journal_entry.save(ignore_permissions = True)
 
 	def create_journal_entry(self, je_payment_amount, user_remark):
 		default_payroll_payable_account = self.get_default_payroll_payable_account()
@@ -349,6 +383,7 @@ class PayrollEntry(Document):
 		journal_entry.posting_date = self.posting_date
 
 		payment_amount = flt(je_payment_amount, precision)
+
 
 		journal_entry.set("accounts", [
 			{
