@@ -10,7 +10,7 @@
  "format_data": "[{\"fieldname\": \"print_heading_template\", \"fieldtype\": \"Custom HTML\", \"options\": \"<div class=\\\"print-heading\\\">\\t\\t\\t\\t<h2>Pick List<br><small>{{ doc.name }}</small>\\t\\t\\t\\t</h2></div>\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"fieldname\": \"company\", \"label\": \"Company\"}, {\"print_hide\": 0, \"fieldname\": \"customer\", \"label\": \"Customer\"}, {\"fieldtype\": \"Column Break\"}, {\"print_hide\": 0, \"fieldname\": \"purpose\", \"label\": \"Purpose\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"visible_columns\": [{\"print_hide\": 0, \"fieldname\": \"item_name\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"warehouse\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"qty\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"stock_qty\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"serial_no\", \"print_width\": \"\"}, {\"print_hide\": 0, \"fieldname\": \"batch_no\", \"print_width\": \"\"}], \"print_hide\": 0, \"fieldname\": \"locations\", \"label\": \"Item Locations\"}]",
  "idx": 0,
  "line_breaks": 1,
- "modified": "2019-08-30 15:58:27.807219",
+ "modified": "2021-05-17 13:50:39.030099",
  "modified_by": "Administrator",
  "module": "Stock",
  "name": "Pick List",

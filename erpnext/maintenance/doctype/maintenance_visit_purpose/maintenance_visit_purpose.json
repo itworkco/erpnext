@@ -11,7 +11,6 @@
   "serial_no",
   "description",
   "work_details",
-  "service_person",
   "work_done",
   "prevdoc_doctype",
   "prevdoc_docname",
@@ -60,16 +59,6 @@
   {
    "fieldname": "work_details",
    "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "service_person",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Sales Person",
-   "oldfieldname": "service_person",
-   "oldfieldtype": "Link",
-   "options": "Sales Person",
-   "reqd": 1
   },
   {
    "fieldname": "work_done",
@@ -125,7 +114,7 @@
  ],
  "idx": 1,
  "istable": 1,
- "modified": "2019-10-03 14:55:52.786805",
+ "modified": "2021-06-23 06:29:14.828895",
  "modified_by": "Administrator",
  "module": "Maintenance",
  "name": "Maintenance Visit Purpose",

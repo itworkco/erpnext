@@ -16,16 +16,18 @@
   "first_name",
   "middle_name",
   "last_name",
+  "family_name",
   "employee_name",
+  "nationality",
   "image",
   "column_break1",
+  "english_name",
   "company",
   "status",
   "employee_number",
   "employment_type",
   "gender",
   "date_of_birth",
-  "date_of_joining",
   "emergency_contact_details",
   "emergency_phone_number",
   "person_to_be_contacted",
@@ -35,14 +37,20 @@
   "create_user",
   "create_user_permission",
   "employment_details",
+  "date_of_joining",
   "job_applicant",
   "scheduled_confirmation_date",
   "final_confirmation_date",
+  "job_title",
   "col_break_22",
   "contract_end_date",
+  "renewal_contract_end_date",
+  "renewal_contract_end_date_btn",
+  "contract_end_text",
   "notice_number_of_days",
   "date_of_retirement",
   "job_profile",
+  "management",
   "department",
   "designation",
   "reports_to",
@@ -63,6 +71,9 @@
   "health_insurance_section",
   "health_insurance_provider",
   "health_insurance_no",
+  "column_break_57",
+  "health_insurance_starting",
+  "health_insurance_end",
   "contact_details",
   "cell_number",
   "prefered_contact_email",
@@ -75,18 +86,35 @@
   "permanent_address",
   "current_accommodation_type",
   "current_address",
+  "live_in_company_house",
   "sb53",
   "bio",
   "personal_details",
   "passport_number",
-  "date_of_issue",
-  "valid_upto",
-  "place_of_issue",
+  "passport_date_of_issue",
+  "passport_date_of_end",
   "column_break6",
   "marital_status",
   "blood_group",
   "family_background",
   "health_details",
+  "residency_details_section",
+  "residency_number",
+  "residency_issue_place",
+  "border_number",
+  "visa_entry_date",
+  "visa_expiry_date",
+  "column_break_84",
+  "residency_issue_date",
+  "residency_valid_to_date",
+  "renewal_residency_valid_to_date",
+  "renewal_residency_valid_to_date_btn",
+  "visa_number",
+  "national_info_section",
+  "national_id",
+  "national_id_issue_place",
+  "column_break_91",
+  "national_id_expiry_date",
   "educational_qualification",
   "education",
   "previous_work_experience",
@@ -106,7 +134,9 @@
   "feedback",
   "lft",
   "rgt",
-  "old_parent"
+  "old_parent",
+  "family_section",
+  "family_details"
  ],
  "fields": [
   {
@@ -332,11 +362,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "depends_on": "eval:(doc.nationality != '\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629')",
    "fieldname": "contract_end_date",
    "fieldtype": "Date",
    "label": "Contract End Date",
    "oldfieldname": "contract_end_date",
-   "oldfieldtype": "Date"
+   "oldfieldtype": "Date",
+   "read_only": 1
   },
   {
    "fieldname": "notice_number_of_days",
@@ -567,21 +599,6 @@
    "label": "Passport Number"
   },
   {
-   "fieldname": "date_of_issue",
-   "fieldtype": "Date",
-   "label": "Date of Issue"
-  },
-  {
-   "fieldname": "valid_upto",
-   "fieldtype": "Date",
-   "label": "Valid Upto"
-  },
-  {
-   "fieldname": "place_of_issue",
-   "fieldtype": "Data",
-   "label": "Place of Issue"
-  },
-  {
    "fieldname": "column_break6",
    "fieldtype": "Column Break",
    "width": "50%"
@@ -777,12 +794,195 @@
    "fieldtype": "Link",
    "label": "Leave Approver",
    "options": "User"
+  },
+  {
+   "fieldname": "family_name",
+   "fieldtype": "Data",
+   "label": "Family Name"
+  },
+  {
+   "fieldname": "nationality",
+   "fieldtype": "Link",
+   "label": "Nationality",
+   "options": "Country"
+  },
+  {
+   "fieldname": "health_insurance_starting",
+   "fieldtype": "Date",
+   "label": "Health Insurance Starting"
+  },
+  {
+   "fieldname": "column_break_57",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "passport_date_of_issue",
+   "fieldtype": "Date",
+   "label": "Passport Date of Issue"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:(in_list([\"\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629\"], doc.nationality) )",
+   "fieldname": "national_info_section",
+   "fieldtype": "Section Break",
+   "label": "National Info",
+   "options": "National Info"
+  },
+  {
+   "fieldname": "national_id",
+   "fieldtype": "Data",
+   "label": "National ID Number"
+  },
+  {
+   "fieldname": "national_id_issue_place",
+   "fieldtype": "Data",
+   "label": "National ID Issue Place"
+  },
+  {
+   "fieldname": "national_id_expiry_date",
+   "fieldtype": "Date",
+   "label": "National ID Expiry Date"
+  },
+  {
+   "fieldname": "column_break_84",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "depends_on": "eval:(doc.nationality != '\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629')",
+   "fieldname": "residency_details_section",
+   "fieldtype": "Section Break",
+   "label": "RESIDENCY DETAILS",
+   "options": "RESIDENCY DETAILS"
+  },
+  {
+   "fieldname": "residency_number",
+   "fieldtype": "Data",
+   "label": "Residency Number",
+   "translatable": 1
+  },
+  {
+   "fieldname": "residency_issue_place",
+   "fieldtype": "Data",
+   "label": "Residency Issue Place",
+   "translatable": 1
+  },
+  {
+   "fieldname": "residency_issue_date",
+   "fieldtype": "Date",
+   "label": "Residency Issue Date"
+  },
+  {
+   "fieldname": "residency_valid_to_date",
+   "fieldtype": "Date",
+   "label": "Residency Valid to Date"
+  },
+  {
+   "fieldname": "border_number",
+   "fieldtype": "Data",
+   "label": "Border Number",
+   "translatable": 1
+  },
+  {
+   "fieldname": "column_break_91",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "job_title",
+   "fieldtype": "Data",
+   "label": "Job Title"
+  },
+  {
+   "default": "0",
+   "fieldname": "live_in_company_house",
+   "fieldtype": "Check",
+   "label": "Live in Company House"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "family_section",
+   "fieldtype": "Section Break",
+   "label": "Family",
+   "options": "Family"
+  },
+  {
+   "fieldname": "family_details",
+   "fieldtype": "Table",
+   "label": "Family Details",
+   "options": "Employee Family"
+  },
+  {
+   "fieldname": "health_insurance_end",
+   "fieldtype": "Date",
+   "label": "Health Insurance End"
+  },
+  {
+   "fieldname": "visa_number",
+   "fieldtype": "Int",
+   "label": "Visa Number"
+  },
+  {
+   "fieldname": "visa_entry_date",
+   "fieldtype": "Date",
+   "label": "Visa Entry Date"
+  },
+  {
+   "fieldname": "visa_expiry_date",
+   "fieldtype": "Date",
+   "label": "Visa Expiry Date"
+  },
+  {
+   "default": "\u063a\u064a\u0631 \u0645\u062d\u062f\u062f",
+   "depends_on": "eval:(doc.nationality == '\u0627\u0644\u0645\u0645\u0644\u0643\u0629 \u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0627\u0644\u0633\u0639\u0648\u062f\u064a\u0629')",
+   "fieldname": "contract_end_text",
+   "fieldtype": "Data",
+   "label": "Contract End Text",
+   "read_only": 1
+  },
+  {
+   "fieldname": "english_name",
+   "fieldtype": "Data",
+   "label": "English Name"
+  },
+  {
+   "fieldname": "passport_date_of_end",
+   "fieldtype": "Date",
+   "label": "Passport Date of End"
+  },
+  {
+   "fieldname": "renewal_contract_end_date",
+   "fieldtype": "Select",
+   "label": "Renewal Contract End Date",
+   "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24"
+  },
+  {
+   "fieldname": "renewal_contract_end_date_btn",
+   "fieldtype": "Button",
+   "label": "Renewal Contract End Date"
+  },
+  {
+   "fieldname": "renewal_residency_valid_to_date",
+   "fieldtype": "Select",
+   "label": "Renewal Residency Valid to Date",
+   "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24"
+  },
+  {
+   "fieldname": "renewal_residency_valid_to_date_btn",
+   "fieldtype": "Button",
+   "label": "Renewal Residency Valid to Date "
+  },
+  {
+   "fieldname": "management",
+   "fieldtype": "Link",
+   "label": "Management",
+   "options": "Department",
+   "reqd": 1
   }
  ],
  "icon": "fa fa-user",
  "idx": 24,
  "image_field": "image",
- "modified": "2020-01-09 04:23:55.611366",
+ "modified": "2021-05-20 19:01:17.017346",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Employee",

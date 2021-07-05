@@ -1,5 +1,4 @@
 {
- "actions": [],
  "allow_events_in_timeline": 1,
  "allow_import": 1,
  "allow_rename": 1,
@@ -167,7 +166,7 @@
    "fieldname": "supplier_type",
    "fieldtype": "Select",
    "label": "Supplier Type",
-   "options": "Company\nIndividual",
+   "options": "Company\nIndividual\nAgency",
    "reqd": 1
   },
   {
@@ -384,8 +383,7 @@
  "icon": "fa fa-user",
  "idx": 370,
  "image_field": "image",
- "links": [],
- "modified": "2020-06-17 23:28:30",
+ "modified": "2021-03-03 21:19:09.555006",
  "modified_by": "Administrator",
  "module": "Buying",
  "name": "Supplier",

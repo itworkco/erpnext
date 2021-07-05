@@ -65,6 +65,10 @@ def get_data():
 					"type": "doctype",
 					"name": "Maintenance Visit",
 				},
+				{
+					"type": "doctype",
+					"name": "Area Visits",
+				},
 			]
 		},
 		{

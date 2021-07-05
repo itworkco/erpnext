@@ -175,14 +175,28 @@ class StockEntry(StockController):
 			return
 
 		if self.project:
+			# amount Material Issue
 			amount = frappe.db.sql(""" select ifnull(sum(sed.amount), 0)
 				from
 					`tabStock Entry` se, `tabStock Entry Detail` sed
 				where
 					se.docstatus = 1 and se.project = %s and sed.parent = se.name
+					and se.purpose <> "Material Receipt" 
 					and (sed.t_warehouse is null or sed.t_warehouse = '')""", self.project, as_list=1)
 
 			amount = amount[0][0] if amount else 0
+
+			amount_receipt = frappe.db.sql(""" select ifnull(sum(sed.amount), 0)
+				from
+					`tabStock Entry` se, `tabStock Entry Detail` sed
+				where
+					se.docstatus = 1 and se.project = %s and sed.parent = se.name
+					and se.purpose = "Material Receipt" 
+					""", self.project, as_list=1)
+
+			amount_receipt = amount_receipt[0][0] if amount_receipt else 0
+
+
 			additional_costs = frappe.db.sql(""" select ifnull(sum(sed.amount), 0)
 				from
 					`tabStock Entry` se, `tabLanded Cost Taxes and Charges` sed
@@ -191,10 +205,12 @@ class StockEntry(StockController):
 					and se.purpose = 'Manufacture'""", self.project, as_list=1)
 
 			additional_cost_amt = additional_costs[0][0] if additional_costs else 0
-
-			amount += additional_cost_amt
-			frappe.db.set_value('Project', self.project, 'total_consumed_material_cost', amount)
-
+  
+			total =  amount + additional_cost_amt - amount_receipt
+			  
+			frappe.db.set_value('Project', self.project, 'total_consumed_material_cost', total)
+			
+			
 	def validate_item(self):
 		stock_items = self.get_stock_items()
 		serialized_items = self.get_serialized_items()

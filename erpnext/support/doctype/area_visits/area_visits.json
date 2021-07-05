@@ -1,0 +1,78 @@
+{
+ "autoname": "field:title",
+ "creation": "2021-01-17 11:56:55.971680",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "from_day",
+  "column_break_4",
+  "to_day",
+  "employees_section",
+  "employees",
+  "territories"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "unique": 1
+  },
+  {
+   "fieldname": "from_day",
+   "fieldtype": "Int",
+   "label": "From Day"
+  },
+  {
+   "fieldname": "to_day",
+   "fieldtype": "Int",
+   "label": "To Day"
+  },
+  {
+   "fieldname": "employees_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "employees",
+   "fieldtype": "Table",
+   "label": "Employees",
+   "options": "Area Visits Employees"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "territories",
+   "fieldtype": "Table",
+   "label": "Territories",
+   "options": "Area Visits Territory"
+  }
+ ],
+ "modified": "2021-03-05 20:48:32.177128",
+ "modified_by": "Administrator",
+ "module": "Support",
+ "name": "Area Visits",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

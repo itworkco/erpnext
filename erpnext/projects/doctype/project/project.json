@@ -34,12 +34,14 @@
   "column_break_20",
   "actual_end_date",
   "project_details",
+  "initial_cost",
   "estimated_costing",
   "total_costing_amount",
   "total_expense_claim",
   "total_purchase_cost",
   "company",
   "column_break_28",
+  "initial_sale",
   "total_sales_amount",
   "total_billable_amount",
   "total_billed_amount",
@@ -61,7 +63,9 @@
   "day_to_send",
   "weekly_time_to_send",
   "column_break_45",
-  "message"
+  "message",
+  "section_break_58",
+  "location"
  ],
  "fields": [
   {
@@ -93,7 +97,8 @@
    "label": "Project Type",
    "oldfieldname": "project_type",
    "oldfieldtype": "Data",
-   "options": "Project Type"
+   "options": "Project Type",
+   "reqd": 1
   },
   {
    "fieldname": "is_active",
@@ -439,12 +444,33 @@
    "fieldname": "message",
    "fieldtype": "Text",
    "label": "Message"
+  },
+  {
+   "fieldname": "initial_cost",
+   "fieldtype": "Currency",
+   "label": "Open Cost",
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "initial_sale",
+   "fieldtype": "Currency",
+   "label": "Open Sale",
+   "options": "Company:company:default_currency"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Geolocation",
+   "label": "Location"
+  },
+  {
+   "fieldname": "section_break_58",
+   "fieldtype": "Section Break"
   }
  ],
  "icon": "fa fa-puzzle-piece",
  "idx": 29,
  "max_attachments": 4,
- "modified": "2020-04-09 14:17:15.524529",
+ "modified": "2021-04-28 23:47:02.161675",
  "modified_by": "Administrator",
  "module": "Projects",
  "name": "Project",

@@ -42,6 +42,7 @@ erpnext.accounts.SalesInvoiceController = erpnext.selling.SellingController.exte
 			// hide new msgbox
 			cur_frm.msgbox.hide();
 		}
+	   cur_frm.toggle_display("scan_barcode", false);
 
 		this.frm.toggle_reqd("due_date", !this.frm.doc.is_return);
 

@@ -38,6 +38,11 @@ erpnext.hr.EmployeeController = frappe.ui.form.Controller.extend({
 });
 frappe.ui.form.on('Employee',{
 	setup: function(frm) {
+
+		if(frm.doc.residency_issue_date){
+			frm.set_value("residency_valid_to_date",moment(frm.doc.residency_issue_date).add(1, 'Y').format('YYYY-MM-DD') ); 
+		}
+	
 		frm.set_query("leave_policy", function() {
 			return {
 				"filters": {
@@ -54,7 +59,7 @@ frappe.ui.form.on('Employee',{
 				}
 			};
 		});
-	},
+	}, 
 	prefered_contact_email:function(frm){		
 		frm.events.update_contact(frm)		
 	},

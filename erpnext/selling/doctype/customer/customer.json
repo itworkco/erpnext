@@ -1,5 +1,4 @@
 {
- "actions": [],
  "allow_events_in_timeline": 1,
  "allow_import": 1,
  "allow_rename": 1,
@@ -23,6 +22,10 @@
   "account_manager",
   "customer_group",
   "territory",
+  "loc_area",
+  "loc_government",
+  "loc_township",
+  "loc_district",
   "tax_id",
   "tax_category",
   "so_required",
@@ -119,7 +122,7 @@
    "label": "Type",
    "oldfieldname": "customer_type",
    "oldfieldtype": "Select",
-   "options": "Company\nIndividual",
+   "options": "Company\nCorporation\nIndividual",
    "reqd": 1
   },
   {
@@ -172,14 +175,12 @@
   {
    "fieldname": "territory",
    "fieldtype": "Link",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
+   "hidden": 1,
    "label": "Territory",
    "oldfieldname": "territory",
    "oldfieldtype": "Link",
    "options": "Territory",
-   "print_hide": 1,
-   "reqd": 1
+   "print_hide": 1
   },
   {
    "fieldname": "tax_id",
@@ -223,6 +224,7 @@
    "depends_on": "represents_company",
    "fieldname": "companies",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Allowed To Transact With",
    "options": "Allowed To Transact With"
   },
@@ -473,20 +475,55 @@
    "default": "0",
    "fieldname": "so_required",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Allow Sales Invoice Creation Without Sales Order"
   },
   {
    "default": "0",
    "fieldname": "dn_required",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Allow Sales Invoice Creation Without Delivery Note"
+  },
+  {
+   "fieldname": "loc_area",
+   "fieldtype": "Link",
+   "label": "Area",
+   "options": "Territory",
+   "reqd": 1
+  },
+  {
+   "fieldname": "loc_government",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Government",
+   "options": "Territory",
+   "reqd": 1
+  },
+  {
+   "fieldname": "loc_district",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "District",
+   "options": "Territory",
+   "reqd": 1
+  },
+  {
+   "fieldname": "loc_township",
+   "fieldtype": "Link",
+   "label": "Township",
+   "options": "Territory",
+   "reqd": 1
   }
  ],
  "icon": "fa fa-user",
  "idx": 363,
  "image_field": "image",
- "links": [],
- "modified": "2020-03-17 11:03:42.706907",
+ "modified": "2021-05-16 11:51:33.068693",
  "modified_by": "Administrator",
  "module": "Selling",
  "name": "Customer",

@@ -1,0 +1,74 @@
+{
+ "autoname": "field:full_name",
+ "creation": "2021-01-13 00:53:30.664917",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "full_name",
+  "birth_date",
+  "health_insurance_provider",
+  "column_break_3",
+  "relation",
+  "image",
+  "health_insurance_number",
+  "residency_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "birth_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Birth Date"
+  },
+  {
+   "fieldname": "relation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Relation"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Full Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "health_insurance_provider",
+   "fieldtype": "Data",
+   "label": "Health Insurance Provider"
+  },
+  {
+   "fieldname": "health_insurance_number",
+   "fieldtype": "Data",
+   "label": "Health Insurance Number"
+  },
+  {
+   "fieldname": "residency_number",
+   "fieldtype": "Data",
+   "label": "Residency Number"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-02-22 03:21:12.345611",
+ "modified_by": "Administrator",
+ "module": "HR",
+ "name": "Employee Family",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

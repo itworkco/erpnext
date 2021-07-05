@@ -2,6 +2,7 @@
 # License: GNU General Public License v3. See license.txt
 
 from __future__ import unicode_literals
+from datetime import datetime 
 import frappe, erpnext
 import frappe.defaults
 from frappe.utils import cint, flt, add_months, today, date_diff, getdate, add_days, cstr, nowdate
@@ -152,6 +153,7 @@ class SalesInvoice(SellingController):
 
 	def on_submit(self):
 		self.validate_pos_paid_amount()
+		self.validate_posting_date()
 
 		if not self.auto_repeat:
 			frappe.get_doc('Authorization Control').validate_approving_authority(self.doctype,
@@ -558,6 +560,9 @@ class SalesInvoice(SellingController):
 					if (d.item_code and is_stock_item ==1 and not d.get(key.lower().replace(' ', '_')) and not self.get(value[1])):
 						msgprint(_("{0} is mandatory for Item {1}").format(key, d.item_code), raise_exception=1)
 
+	def validate_posting_date(self):  
+		if datetime.strptime(self.posting_date,'%Y-%m-%d') > datetime.strptime(frappe.utils.nowdate(),'%Y-%m-%d'): 
+			throw(_("Posting Date does not Correct"))
 
 	def validate_proj_cust(self):
 		"""check for does customer belong to same project as entered.."""
