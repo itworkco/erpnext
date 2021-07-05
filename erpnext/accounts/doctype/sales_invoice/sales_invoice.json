@@ -12,6 +12,8 @@
   "customer_name",
   "tax_id",
   "is_pos",
+  "reference_no",
+  "reference_date",
   "pos_profile",
   "offline_pos_name",
   "is_return",
@@ -254,10 +256,9 @@
    "print_hide": 1
   },
   {
-   "default": "0",
+   "default": "1",
    "fieldname": "is_pos",
    "fieldtype": "Check",
-   "hidden": 1,
    "label": "Include Payment (POS)",
    "oldfieldname": "is_pos",
    "oldfieldtype": "Check",
@@ -267,6 +268,7 @@
    "depends_on": "is_pos",
    "fieldname": "pos_profile",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "POS Profile",
    "options": "POS Profile",
    "print_hide": 1
@@ -583,7 +585,7 @@
    "options": "fa fa-shopping-cart"
   },
   {
-   "default": "1",
+   "default": "0",
    "fieldname": "update_stock",
    "fieldtype": "Check",
    "label": "Update Stock",
@@ -1566,12 +1568,24 @@
    "label": "Customer's Purchase Order",
    "no_copy": 1,
    "print_hide": 1
+  },
+  {
+   "depends_on": "is_pos",
+   "fieldname": "reference_no",
+   "fieldtype": "Data",
+   "label": "Reference No"
+  },
+  {
+   "depends_on": "is_pos",
+   "fieldname": "reference_date",
+   "fieldtype": "Date",
+   "label": "Reference Date"
   }
  ],
  "icon": "fa fa-file-text",
  "idx": 181,
  "is_submittable": 1,
- "modified": "2021-06-30 19:36:48.667379",
+ "modified": "2021-07-05 20:59:04.552134",
  "modified_by": "Administrator",
  "module": "Accounts",
  "name": "Sales Invoice",

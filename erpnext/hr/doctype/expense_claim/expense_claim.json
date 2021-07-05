@@ -6,6 +6,7 @@
  "document_type": "Setup",
  "engine": "InnoDB",
  "field_order": [
+  "title",
   "naming_series",
   "employee",
   "employee_name",
@@ -32,7 +33,6 @@
   "task",
   "cb1",
   "remark",
-  "title",
   "email_id",
   "accounting_details",
   "company",
@@ -215,7 +215,6 @@
    "default": "{employee_name}",
    "fieldname": "title",
    "fieldtype": "Data",
-   "hidden": 1,
    "label": "Title",
    "no_copy": 1
   },
@@ -368,7 +367,7 @@
  "icon": "fa fa-money",
  "idx": 1,
  "is_submittable": 1,
- "modified": "2021-06-30 18:23:17.910563",
+ "modified": "2021-07-05 21:36:25.711829",
  "modified_by": "Administrator",
  "module": "HR",
  "name": "Expense Claim",
